@@ -1,0 +1,8 @@
+.leadform-container { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f7f7f7; }
+.leadform-form { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 1rem; }
+.leadform-form h2 { text-align: center; }
+.leadform-form input, .leadform-form select, .leadform-form textarea, .leadform-form button { padding: 0.75rem; border-radius: 4px; border: 1px solid #ddd; }
+.leadform-form textarea { min-height: 60px; }
+.leadform-actions { display: flex; gap: 1rem; justify-content: space-between; }
+.leadform-form button { background: #1976d2; color: #fff; border: none; cursor: pointer; font-weight: bold; }
+.leadform-form button:disabled { background: #90caf9; cursor: not-allowed; }

@@ -1,0 +1,10 @@
+.leads-container { padding: 2rem 1rem; max-width: 600px; margin: 2rem auto; }
+.leads-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.leads-filters { display: flex; gap: 0.5rem; }
+.leads-filters button { padding: 0.5rem 1rem; border: none; border-radius: 4px; background: #1976d2; color: #fff; font-weight: bold; cursor: pointer; }
+.leads-filters .active, .leads-filters button.active { background: #fbc02d; color: #333; }
+.leads-list { display: flex; flex-direction: column; gap: 1rem; }
+.lead-item { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 1rem; color: #000; }
+.lead-item.hot { border-left: 5px solid #e53935; }
+.lead-item.cold { border-left: 5px solid #039be5; }
+.lead-item.warm { border-left: 5px solid #fbc02d; }
