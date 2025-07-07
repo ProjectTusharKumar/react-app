@@ -6,16 +6,26 @@ import './Dashboard.css';
 
 const Dashboard = () => {
   const [stats, setStats] = useState({ total: 0, hot: 0, cold: 0, warm: 0 });
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
 
   useEffect(() => {
     async function fetchStats() {
+      setLoading(true);
       try {
         const res = await getDashboard(token);
-        setStats(res.data);
+        // Map backend response to UI state
+        setStats({
+          total: res.data.totalLeads ?? 0,
+          hot: res.data.hotCount ?? 0,
+          cold: res.data.coldCount ?? 0,
+          warm: res.data.warmCount ?? 0,
+        });
       } catch (err) {
         toast.error('Failed to fetch dashboard data');
+      } finally {
+        setLoading(false);
       }
     }
     fetchStats();
@@ -29,17 +39,23 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <div className="tiles">
-        <div className="tile total">Total Leads: {stats.total}</div>
-        <div className="tile hot">Hot: {stats.hot}</div>
-        <div className="tile cold">Cold: {stats.cold}</div>
-        <div className="tile warm">Warm: {stats.warm}</div>
-      </div>
-      <div className="dashboard-actions">
-        <button onClick={() => navigate('/form')}>Create Lead</button>
-        <button onClick={() => navigate('/leads')}>View Leads</button>
-        <button onClick={handleLogout} className="logout">Logout</button>
-      </div>
+      {loading ? (
+        <div style={{textAlign: 'center', fontWeight: 600, fontSize: '1.2rem'}}>Loading...</div>
+      ) : (
+        <>
+          <div className="tiles">
+            <div className="tile total">Total Leads: {stats.total}</div>
+            <div className="tile hot">Hot: {stats.hot}</div>
+            <div className="tile cold">Cold: {stats.cold}</div>
+            <div className="tile warm">Warm: {stats.warm}</div>
+          </div>
+          <div className="dashboard-actions">
+            <button onClick={() => navigate('/form')}>Create Lead</button>
+            <button onClick={() => navigate('/leads')}>View Leads</button>
+            <button onClick={handleLogout} className="logout">Logout</button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
