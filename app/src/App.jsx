@@ -8,18 +8,12 @@ import LeadForm from './pages/LeadForm';
 import Leads from './pages/Leads';
 
 function AuthWrapper({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
-  const location = useLocation();
+  const [isAuthenticated, setIsAuthenticated] = useState(() => !!localStorage.getItem('token'));
 
   useEffect(() => {
-    const onStorage = () => setIsAuthenticated(!!localStorage.getItem('token'));
-    window.addEventListener('storage', onStorage);
-    return () => window.removeEventListener('storage', onStorage);
+    const token = localStorage.getItem('token');
+    setIsAuthenticated(!!token);
   }, []);
-
-  useEffect(() => {
-    setIsAuthenticated(!!localStorage.getItem('token'));
-  }, [location]);
 
   return children(isAuthenticated);
 }

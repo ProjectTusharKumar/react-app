@@ -18,9 +18,9 @@ const Login = () => {
       const { token, empId } = res.data;
       localStorage.setItem('token', token);
       localStorage.setItem('employeeId', empId);
+      sessionStorage.setItem('justLoggedIn', '1');
       toast.success('Login successful!');
-      // Instead of navigate, reload the page to ensure state is synced
-      window.location.href = '/dashboard';
+      navigate('/dashboard', { replace: true });
     } catch (err) {
       toast.error(err?.response?.data?.message || 'Login failed');
     } finally {
