@@ -15,12 +15,15 @@ const Login = () => {
     setLoading(true);
     try {
       const res = await login(email, password);
-      const { token, empId } = res.data;
+      const { token, empId, name, role } = res.data;
       localStorage.setItem('token', token);
       localStorage.setItem('employeeId', empId);
-      sessionStorage.setItem('justLoggedIn', '1');
-      toast.success('Login successful!');
-      navigate('/dashboard', { replace: true });
+      localStorage.setItem('name', name);
+      localStorage.setItem('role', role);
+      toast.success(role === 'admin' ? 'You logged in as admin!' : 'Login successful!');
+      setTimeout(() => {
+        navigate(role === 'admin' ? '/admin-dashboard' : '/dashboard', { replace: true });
+      }, 100);
     } catch (err) {
       toast.error(err?.response?.data?.message || 'Login failed');
     } finally {

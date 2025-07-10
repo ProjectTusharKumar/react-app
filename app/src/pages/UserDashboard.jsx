@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getDashboard } from '../api';
 import { toast } from 'react-toastify';
-import './Dashboard.css';
+import './UserDashboard.css';
 
 const Dashboard = () => {
   const [stats, setStats] = useState({ total: 0, hot: 0, cold: 0, warm: 0 });
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
+  const name = localStorage.getItem('name');
 
   useEffect(() => {
     async function fetchStats() {
@@ -43,6 +44,7 @@ const Dashboard = () => {
         <div style={{textAlign: 'center', fontWeight: 600, fontSize: '1.2rem'}}>Loading...</div>
       ) : (
         <>
+          <h2>HI! {name}</h2>
           <div className="tiles">
             <div className="tile total">Total Leads: {stats.total}</div>
             <div className="tile hot">Hot: {stats.hot}</div>
