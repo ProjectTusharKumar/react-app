@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../api';
 import { toast } from 'react-toastify';
+import { useAuth } from '../api/AuthContext.jsx';
 import './Login.css';
 
 const Login = () => {
@@ -9,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { login: setAuth } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,10 +18,7 @@ const Login = () => {
     try {
       const res = await login(email, password);
       const { token, empId, name, role } = res.data;
-      localStorage.setItem('token', token);
-      localStorage.setItem('employeeId', empId);
-      localStorage.setItem('name', name);
-      localStorage.setItem('role', role);
+      setAuth({ token, role, name, employeeId: empId });
       toast.success(role === 'admin' ? 'You logged in as admin!' : 'Login successful!');
       setTimeout(() => {
         navigate(role === 'admin' ? '/admin-dashboard' : '/dashboard', { replace: true });
