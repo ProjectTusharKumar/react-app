@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import LeadForm from './pages/LeadForm';
 import Leads from './pages/Leads';
 import { AuthProvider, useAuth } from './api/AuthContext.jsx';
+import SplashScreen from './components/SplashScreen';
 
 function AppRoutes() {
   const { token, role } = useAuth();
@@ -25,6 +26,12 @@ function AppRoutes() {
 }
 
 function App() {
+  const [showSplash, setShowSplash] = useState(true);
+
+  if (showSplash) {
+    return <SplashScreen videoSrc="/Zeus_infinty_affiliate_logo_animation.mp4" onFinish={() => setShowSplash(false)} />;
+  }
+
   return (
     <AuthProvider>
       <Router>

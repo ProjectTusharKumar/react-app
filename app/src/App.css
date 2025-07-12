@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background: transparent;
 }
 
 .logo {
@@ -34,7 +35,11 @@
 }
 
 .card {
+  background: #23272f;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
   padding: 2em;
+  color: #f1f1f1;
 }
 
 .read-the-docs {
@@ -44,8 +49,8 @@
 body {
   margin: 0;
   font-family: 'Inter', Arial, sans-serif;
-  background: #f9f9f9;
-  color: #000;
+  background: #18191a;
+  color: #f1f1f1;
 }
 
 .centered-container {
@@ -77,37 +82,39 @@ body {
 .centered-container input,
 .centered-container select,
 .centered-container textarea {
-  padding: 12px;
-  border: 1px solid #ddd;
+  background: #23272f;
+  color: #f1f1f1;
+  border: 1.5px solid #333;
   border-radius: 8px;
+  padding: 0.85rem 1rem;
   font-size: 1rem;
-  background: #f7f7f7;
-  color: #222;
-  outline: none;
-  transition: border 0.2s;
+  transition: border 0.2s, background 0.2s;
 }
 
 .centered-container input:focus,
 .centered-container select:focus,
 .centered-container textarea:focus {
-  border: 1.5px solid #007bff;
+  border: 1.5px solid #1976d2;
+  outline: none;
+  background: #23272f;
 }
 
 .centered-container button {
-  padding: 12px;
+  background: linear-gradient(90deg, #1976d2 60%, #64b5f6 100%);
+  color: #fff;
   border: none;
   border-radius: 8px;
-  background: #007bff;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
+  padding: 0.85rem 1rem;
+  font-weight: 700;
+  font-size: 1.1rem;
   cursor: pointer;
-  margin-top: 8px;
-  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+  transition: background 0.2s, box-shadow 0.2s;
 }
 
 .centered-container button:disabled {
-  background: #b3d1ff;
+  background: #444;
+  color: #888;
   cursor: not-allowed;
 }
 
@@ -149,4 +156,13 @@ body {
     padding: 14px 0;
     font-size: 1rem;
   }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #23272f;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 8px;
 }
