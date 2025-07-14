@@ -23,15 +23,27 @@ const Leads = () => {
     // Get status from query param if present
     const params = new URLSearchParams(location.search);
     const statusParam = params.get('status');
-    if (statusParam) setFilter(statusParam);
-  }, [location.search]);
+    if (statusParam) {
+      setFilter(statusParam);
+    } else if (navState && navState.api === 'employee') {
+      setFilter('all');
+    }
+  }, [location.search, navState]);
 
   useEffect(() => {
     async function fetchLeads() {
       try {
         let res;
         if (filter === 'all') {
-          res = await getLeadsByEmployee(employeeId, token);
+          // Use /leads endpoint with headers
+          res = await import('../api').then(({ default: api }) =>
+            api.get('/leads', {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'employee-id': employeeId,
+              },
+            })
+          );
         } else if (filter) {
           res = await getLeadsByStatus(filter, token, employeeId);
         } else {

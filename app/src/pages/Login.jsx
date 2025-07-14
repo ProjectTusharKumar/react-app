@@ -5,7 +5,6 @@ import './Login.css';
 import { login as loginApi } from '../api';
 import { toast } from 'react-toastify';
 import { useAuth } from '../api/AuthContext.jsx';
-// import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Input from '../components/Input';
 
 const Login = () => {
@@ -38,7 +37,7 @@ const Login = () => {
   };
 
   return (
-    <div className="leadform-container">
+    <div className="leadform-container" style={{ paddingTop: 0 }}>
       <form className="leadform-modern-form" onSubmit={handleSubmit}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 24 }}>
           <img src="/Zeus_infinity_Ilogo.png" alt="ZI Affiliates Logo" style={{ height: 72, width: 72, objectFit: 'contain', marginBottom: 8 }} />

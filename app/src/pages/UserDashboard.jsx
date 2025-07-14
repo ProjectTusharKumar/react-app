@@ -13,6 +13,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const name = localStorage.getItem('name');
   const token = localStorage.getItem('token');
+  const employeeId = localStorage.getItem('employeeId');
 
   useEffect(() => {
     async function fetchStats() {
@@ -76,11 +77,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard-root">
       <header className="dashboard-header">
-        {/* <div className="header-left" style={{ maxWidth: '60vw',  display: 'flex', alignItems: 'center' }}> */}
           <img src="/Zeus_infinity_logo (1).png" alt="Zeus Infinity Affiliates Logo" style={{ height: 90, width: '37%', maxWidth: 420, objectFit: 'contain', background: 'transparent', display: 'block' }} />
-        {/* </div> */}
-                {/* <div> className="header-title">ZI Affiliates</div> */}
-               {/* <img src="/Zeus_infinity_Affiliates_logo.png" alt="Zeus Infinity Affiliates Logo" className="header-title" style={{ height: 72, width: 'auto', objectFit: 'contain', background: 'transparent', display: 'block', maxWidth: 340 }} /> */}
 
 
         <div className="header-right" style={{ position: 'relative', overflow: 'visible', zIndex: 10 }}>
