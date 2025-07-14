@@ -37,7 +37,8 @@ const SplashScreen = ({ videoSrc, onFinish }) => {
         autoPlay
         muted
         playsInline
-        style={{ maxWidth: '100vw', height: '100vh', objectFit: 'cover' }}
+        style={{ maxWidth: '100vw', maxHeight: '100vh', objectFit: 'contain' }}
+        // style={{ maxWidth: '100vw', height: '100vh', objectFit: 'cover' }}
         onEnded={handleEnded}
       />
     </div>

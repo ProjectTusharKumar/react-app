@@ -35,15 +35,8 @@ const Leads = () => {
       try {
         let res;
         if (filter === 'all') {
-          // Use /leads endpoint with headers
-          res = await import('../api').then(({ default: api }) =>
-            api.get('/leads', {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                'employee-id': employeeId,
-              },
-            })
-          );
+          // Use getLeadsByEmployee API
+          res = await getLeadsByEmployee(employeeId, token);
         } else if (filter) {
           res = await getLeadsByStatus(filter, token, employeeId);
         } else {

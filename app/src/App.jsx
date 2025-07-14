@@ -29,7 +29,7 @@ function App() {
   const [showSplash, setShowSplash] = useState(true);
 
   if (showSplash) {
-    return <SplashScreen videoSrc="/Zeus_infinty_affiliate_logo_animation.mp4" onFinish={() => setShowSplash(false)} />;
+    return <SplashScreen videoSrc="Zeus_infinty_affiliate_logo_animation_black.mp4" onFinish={() => setShowSplash(false)} />;
   }
 
   return (
