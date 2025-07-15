@@ -37,24 +37,24 @@ const Login = () => {
   };
 
   return (
-    <div className="leadform-container" style={{ paddingTop: 0 }}>
-      <form className="leadform-modern-form" onSubmit={handleSubmit}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 24 }}>
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleSubmit}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 24 ,paddingTop: 20,marginTop: 20}}>
           <img src="/Zeus_infinity_Ilogo.png" alt="ZI Affiliates Logo" style={{ height: 72, width: 72, objectFit: 'contain', marginBottom: 8 }} />
-          <h2 style={{ color: '#fff', fontWeight: 700, fontSize: '1.7rem', margin: 0 }}>Login</h2>
+          <h2 className="login-title">Login</h2>
         </div>
-        <div className="leadform-row">
-          <span className="leadform-icon">📧</span>
-          <label className="leadform-label" htmlFor="email">Email</label>
-          <Input type="email" name="email" value={form.email} onChange={handleChange} required className="leadform-modern-input" />
+        <div className="login-row">
+          <span className="login-icon">📧</span>
+          <label className="login-label" htmlFor="email">Email</label>
+          <Input type="email" name="email" value={form.email} onChange={handleChange} required className="login-input" />
         </div>
-        <div className="leadform-row">
-          <span className="leadform-icon">🔒</span>
-          <label className="leadform-label" htmlFor="password">Password</label>
-          <Input type="password" name="password" value={form.password} onChange={handleChange} required className="leadform-modern-input" />
+        <div className="login-row">
+          <span className="login-icon">🔒</span>
+          <label className="login-label" htmlFor="password">Password</label>
+          <Input type="password" name="password" value={form.password} onChange={handleChange} required className="login-input" />
         </div>
-        <div className="leadform-actions">
-          <button type="submit" className="leadform-btn" disabled={loading}>{loading ? 'Logging in...' : 'Login'}</button>
+        <div className="login-actions">
+          <button type="submit" className="login-btn" disabled={loading}>{loading ? 'Logging in...' : 'Login'}</button>
         </div>
       </form>
     </div>

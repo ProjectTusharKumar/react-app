@@ -18,7 +18,7 @@ const LeadForm = () => {
     existingAgency: 'yes',
     services: [],
     industry: '',
-    budget: [100, 10000],
+    budget: [15000, 100000],
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -55,11 +55,11 @@ const LeadForm = () => {
     }
   };
 
-  const BUDGET_MIN = 100;
-  const BUDGET_MAX = 10000;
+  const BUDGET_MIN = 15000;
+  const BUDGET_MAX = 100000;
 
   return (
-    <div className="leadform-container">
+    <div className="leadform-container" style={{ scrollBehavior: 'smooth' }}>
       <div className="leadform-modern-form"><button
         type="button"
         className="leadform-btn leadform-back-outside"
@@ -69,32 +69,32 @@ const LeadForm = () => {
       </button>
 
         <div className="leadform-title">
-          <span className="leadform-icon">📝</span>
+          {/*<span className="leadform-icon">📝</span> */}
           Add New Lead
         </div>
         <form onSubmit={handleSubmit}>
           <div className="leadform-row">
-            <span className="leadform-icon">👤</span>
-            <label className="leadform-label" htmlFor="name">Name</label>
+            {/* <span className="leadform-icon">👤</span> */}
+            <label className="leadform-label" htmlFor="name">Full Name</label>
             <Input type="text" name="name" value={form.name} onChange={handleChange} required />
           </div>
           <div className="leadform-row">
-            <span className="leadform-icon">📞</span>
+            {/* <span className="leadform-icon">📞</span> */}
             <label className="leadform-label" htmlFor="phone">Phone</label>
             <Input type="text" name="phone" value={form.phone} onChange={handleChange} required />
           </div>
           <div className="leadform-row">
-            <span className="leadform-icon">📧</span>
+            {/* <span className="leadform-icon">📧</span> */}
             <label className="leadform-label" htmlFor="email">Email</label>
             <Input type="email" name="email" value={form.email} onChange={handleChange} required />
           </div>
           <div className="leadform-row">
-            <span className="leadform-icon">📅</span>
+            {/* <span className="leadform-icon">📅</span> */}
             <label className="leadform-label" htmlFor="date">Date</label>
             <Input type="date" name="date" value={form.date} onChange={handleChange} required />
           </div>
           <div className="leadform-row">
-            <span className="leadform-icon">🏢</span>
+            {/* <span className="leadform-icon">🏢</span> */}
             <label className="leadform-label">Existing Agency</label>
             <div style={{ display: 'flex', gap: '1rem' }}>
               <label><input type="radio" name="existingAgency" value="yes" checked={form.existingAgency === 'yes'} onChange={handleChange} required /> Yes</label>
@@ -102,7 +102,7 @@ const LeadForm = () => {
             </div>
           </div>
           <div className="leadform-row">
-            <span className="leadform-icon">🛠️</span>
+            {/* <span className="leadform-icon">🛠️</span> */}
             <label className="leadform-label">Services</label>
             <select name="services" multiple value={form.services || []} onChange={e => setForm(f => ({ ...f, services: Array.from(e.target.selectedOptions, o => o.value) }))} className="leadform-select" required>
               <option value="digital marketing">Digital Marketing</option>
@@ -113,7 +113,7 @@ const LeadForm = () => {
             </select>
           </div>
           <div className="leadform-row">
-            <span className="leadform-icon">🏭</span>
+            {/* <span className="leadform-icon">🏭</span> */}
             <label className="leadform-label">Industry</label>
             <select name="industry" value={form.industry || ''} onChange={handleChange} className="leadform-select" required>
               <option value="">Select Industry</option>
@@ -125,7 +125,7 @@ const LeadForm = () => {
             </select>
           </div>
           <div className="leadform-row">
-            <span className="leadform-icon">💰</span>
+            {/* <span className="leadform-icon">💰</span> */}
             <label className="leadform-label">Budget</label>
             <Range
               step={100}
@@ -168,7 +168,7 @@ const LeadForm = () => {
             </div>
           </div>
           <div className="leadform-row">
-            <span className="leadform-icon">📋</span>
+            {/* <span className="leadform-icon">📋</span> */}
             <label className="leadform-label" htmlFor="notes">Notes</label>
             <textarea
               className="leadform-textarea"

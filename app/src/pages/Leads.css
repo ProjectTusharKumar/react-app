@@ -2,11 +2,11 @@
 .leads-container {
   padding: 2.5rem 1.5rem;
   max-width: 700px;
-  margin: 2.5rem auto;
-  background: #18191a;
-  border-radius: 18px;
+  /* margin: 2.5rem auto; */
+  /* background: #18191a; */
+  /* border-radius: 18px; */
   min-height: 80vh;
-}
+}    
 .leads-header {
   display: flex;
   justify-content: space-between;
@@ -56,8 +56,8 @@
 }
 @media (max-width: 700px) {
   .leads-container {
-    padding: 1.2rem 0.3rem;
+    /* padding: 1.2rem 0.3rem; */
     max-width: 98vw;
-    border-radius: 10px;
+    /* border-radius: 10px; */
   }
 }

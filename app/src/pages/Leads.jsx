@@ -55,10 +55,10 @@ const Leads = () => {
   }, [filter, token, employeeId]);
 
   return (
-    <div className="leads-container">
+    <div className="leads-container" style={{ scrollBehavior: 'smooth' }}>
       <div className="leads-header">
         <button onClick={() => navigate('/dashboard')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0.5rem 0.7rem', borderRadius: '50%' }} title="Back">
-          <FaArrowLeft size={22} color="#fff" />
+          <FaArrowLeft size={22} color="#000" />
         </button>
         <div className="leads-filters">
           {statusOptions.map(status => (

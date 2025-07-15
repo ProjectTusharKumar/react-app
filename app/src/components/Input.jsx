@@ -1,100 +1,64 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Input = ({ type = 'text', value, onChange, name, placeholder, ...rest }) => {
+const Input = ({ name, value, onChange, label, type = 'text', ...rest }) => {
   return (
     <StyledWrapper>
-      <div className="inputbox">
+      <div className="input-group">
         <input
-          required="required"
+          required
           type={type}
+          name={name}
           value={value}
           onChange={onChange}
-          name={name}
-          placeholder={placeholder}
+          autoComplete="off"
+          className="input"
           {...rest}
         />
-        {/* <span>{placeholder}</span> */}
-        <i />
+        <label className={value ? 'filled' : 'user-label'}>{label}</label>
       </div>
     </StyledWrapper>
   );
-}
+};
 
 const StyledWrapper = styled.div`
-  .inputbox {
+  .input-group {
     position: relative;
-    width: 196px;
-    max-width: 100vw;
   }
 
-  .inputbox input {
-    position: relative;
+  .input {
+    border: solid 1.5px #9e9e9e;
+    border-radius: 1rem;
+    // background: none;
+    padding-right: 6px;
+    font-size: 1rem;
+    color: #f5f5f5;
+    transition: border 150ms cubic-bezier(0.4,0,0.2,1);
     width: 100%;
-    min-width: 0;
-    padding: 20px 10px 10px;
+  }
+
+  .user-label {
+    position: absolute;
+    left: 15px;
+    color: #e8e8e8;
+    pointer-events: none;
+    transform: translateY(1rem);
+    transition: 150ms cubic-bezier(0.4,0,0.2,1);
     background: transparent;
+  }
+
+  .filled,
+  .input:focus ~ label,
+  .input:not(:placeholder-shown) ~ label {
+    transform: translateY(-50%) scale(0.8);
+    background-color: #212121;
+    padding: 0 .2em;
+    color: #2196f3;
+  }
+
+  .input:focus, .input:valid {
     outline: none;
-    box-shadow: none;
-    border: none;
-    color: #23242a;
-    font-size: 1em;
-    letter-spacing: 0.05em;
-    transition: 0.5s;
-    z-index: 10;
-  }
-
-  .inputbox span {
-    position: absolute;
-    left: 0;
-    padding: 20px 10px 10px;
-    font-size: 1em;
-    color: #8f8f8f;
-    letter-spacing: 00.05em;
-    transition: 0.5s;
-    pointer-events: none;
-  }
-
-  .inputbox input:valid ~span,
-  .inputbox input:focus ~span {
-    color: #45f3ff;
-    transform: translateX(-10px) translateY(-34px);
-    font-size: 0.75em;
-  }
-
-  .inputbox i {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    background: #45f3ff;
-    border-radius: 4px;
-    transition: 0.5s;
-    pointer-events: none;
-    z-index: 9;
-  }
-
-  .inputbox input:valid ~i,
-  .inputbox input:focus ~i {
-    height: 44px;
-  }
-
-  @media (max-width: 600px) {
-    .inputbox {
-      width: 100%;
-      min-width: 0;
-      max-width: 98vw;
-      padding: 0;
-    }
-    .inputbox input {
-      font-size: 1em;
-      padding: 16px 8px 8px;
-    }
-    .inputbox span {
-      font-size: 0.95em;
-      padding: 16px 8px 8px;
-    }
+    border: 1.5px solid #1a73e8;
   }
 `;
 
