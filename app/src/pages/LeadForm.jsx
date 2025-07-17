@@ -59,52 +59,38 @@ const LeadForm = () => {
   const BUDGET_MAX = 100000;
 
   return (
-    <div className="leadform-container" style={{ scrollBehavior: 'smooth' }}>
-      <div className="leadform-modern-form"><button
-        type="button"
-        className="leadform-btn leadform-back-outside"
-        onClick={() => navigate('/dashboard')}
-      >
-        <span style={{ fontSize: 22, marginRight: 4 }}>←</span> Back
-      </button>
-
-        <div className="leadform-title">
-          {/*<span className="leadform-icon">📝</span> */}
-          Add New Lead
+    <div className="leadform-container" style={{ scrollBehavior: 'smooth', justifyContent: 'center', alignItems: 'center' }}>
+      <form className="leadform-modern-form" onSubmit={handleSubmit} style={{ width: '100%', maxWidth: 420, margin: '0 auto', background: '#23272f', borderRadius: 18, boxShadow: '0 6px 32px rgba(25, 118, 210, 0.10), 0 1.5px 6px rgba(0,0,0,0.18)', padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', gap: '2rem', color: '#fff' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 24, marginTop: 10 }}>
+          <img src="/Zeus_infinity_Ilogo.png" alt="ZI Affiliates Logo" style={{ height: 64, width: 64, objectFit: 'contain', marginBottom: 8 }} />
+          <h2 className="leadform-title" style={{ fontSize: '2rem', fontWeight: 700, color: '#fff', letterSpacing: 1, marginBottom: 0 }}>{'Lead Form'}</h2>
         </div>
-        <form onSubmit={handleSubmit}>
           <div className="leadform-row">
-            {/* <span className="leadform-icon">👤</span> */}
             <label className="leadform-label" htmlFor="name">Full Name</label>
-            <Input type="text" name="name" value={form.name} onChange={handleChange} required />
+            <Input type="text" name="name" value={form.name} onChange={handleChange} required className="leadform-input" />
           </div>
           <div className="leadform-row">
-            {/* <span className="leadform-icon">📞</span> */}
             <label className="leadform-label" htmlFor="phone">Phone</label>
-            <Input type="text" name="phone" value={form.phone} onChange={handleChange} required />
+            <Input type="text" name="phone" value={form.phone} onChange={handleChange} required className="leadform-input" />
           </div>
           <div className="leadform-row">
-            {/* <span className="leadform-icon">📧</span> */}
             <label className="leadform-label" htmlFor="email">Email</label>
-            <Input type="email" name="email" value={form.email} onChange={handleChange} required />
+            <Input type="email" name="email" value={form.email} onChange={handleChange} required className="leadform-input" />
           </div>
           <div className="leadform-row">
-            {/* <span className="leadform-icon">📅</span> */}
             <label className="leadform-label" htmlFor="date">Date</label>
-            <Input type="date" name="date" value={form.date} onChange={handleChange} required />
+            <Input type="date" name="date" value={form.date} onChange={handleChange} required className="leadform-input" />
           </div>
           <div className="leadform-row">
-            {/* <span className="leadform-icon">🏢</span> */}
             <label className="leadform-label">Existing Agency</label>
-            <div style={{ display: 'flex', gap: '1rem' }}>
-              <label><input type="radio" name="existingAgency" value="yes" checked={form.existingAgency === 'yes'} onChange={handleChange} required /> Yes</label>
-              <label><input type="radio" name="existingAgency" value="no" checked={form.existingAgency === 'no'} onChange={handleChange} required /> No</label>
+            <div style={{ display: 'flex', gap: '1.2rem' }}>
+              <label style={{ color: '#fff' }}><input type="radio" name="existingAgency" value="yes" checked={form.existingAgency === 'yes'} onChange={handleChange} required /> Yes</label>
+              <label style={{ color: '#fff' }}><input type="radio" name="existingAgency" value="no" checked={form.existingAgency === 'no'} onChange={handleChange} required /> No</label>
             </div>
           </div>
           <div className="leadform-row">
-            {/* <span className="leadform-icon">🛠️</span> */}
             <label className="leadform-label">Services</label>
-            <select name="services" multiple value={form.services || []} onChange={e => setForm(f => ({ ...f, services: Array.from(e.target.selectedOptions, o => o.value) }))} className="leadform-select" required>
+            <select name="services" multiple value={form.services || []} onChange={e => setForm(f => ({ ...f, services: Array.from(e.target.selectedOptions, o => o.value) }))} className="leadform-select" required style={{ minHeight: 44 }}>
               <option value="digital marketing">Digital Marketing</option>
               <option value="development">Development</option>
               <option value="social media">Social Media</option>
@@ -113,9 +99,8 @@ const LeadForm = () => {
             </select>
           </div>
           <div className="leadform-row">
-            {/* <span className="leadform-icon">🏭</span> */}
             <label className="leadform-label">Industry</label>
-            <select name="industry" value={form.industry || ''} onChange={handleChange} className="leadform-select" required>
+            <select name="industry" value={form.industry || ''} onChange={handleChange} className="leadform-select" required style={{ minHeight: 44 }}>
               <option value="">Select Industry</option>
               <option value="1 year">1 year</option>
               <option value="2 year">2 year</option>
@@ -124,8 +109,7 @@ const LeadForm = () => {
               <option value="5 year">5 year</option>
             </select>
           </div>
-          <div className="leadform-row">
-            {/* <span className="leadform-icon">💰</span> */}
+          <div className="leadform-row" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
             <label className="leadform-label">Budget</label>
             <Range
               step={100}
@@ -163,12 +147,11 @@ const LeadForm = () => {
                 />
               )}
             />
-            <div style={{ color: '#fff', fontSize: 14, textAlign: 'center' }}>
+            <div style={{ color: '#fff', fontSize: 14, textAlign: 'center', width: '100%' }}>
               Rs {form.budget[0]} - Rs {form.budget[1]}
             </div>
           </div>
           <div className="leadform-row">
-            {/* <span className="leadform-icon">📋</span> */}
             <label className="leadform-label" htmlFor="notes">Notes</label>
             <textarea
               className="leadform-textarea"
@@ -176,16 +159,16 @@ const LeadForm = () => {
               value={form.notes}
               onChange={handleChange}
               rows={3}
-              style={{ width: '100%', background: '#18191a', color: '#fff', border: '1.5px solid #fff', borderRadius: '8px', resize: 'vertical', boxSizing: 'border-box' }}
+              style={{ width: '100%', background: '#18191a', color: '#fff', border: '1.5px solid #fff', borderRadius: '8px', resize: 'vertical', boxSizing: 'border-box', minHeight: 60 }}
               placeholder="Enter notes..."
             />
           </div>
-          <div className="leadform-actions">
-            <button type="submit" className="leadform-btn">Submit</button>
-            <button type="button" className="leadform-btn leadform-back" onClick={() => navigate('/dashboard')}>Back</button>
+          <div className="leadform-actions" style={{ flexDirection: 'column', gap: 8 }}>
+            <button type="submit" className="leadform-btn" style={{ width: '100%', marginBottom: 8 }} disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
+            {/* <a href="#" style={{ color: '#64b5f6', textAlign: 'center', fontSize: 15, textDecoration: 'underline', marginBottom: 12, marginTop: -6 }}>Forgot something?</a> */}
+            <button type="button" className="leadform-btn leadform-back" style={{ width: '100%' }} onClick={() => navigate('/dashboard')}>Back</button>
           </div>
         </form>
-      </div>
     </div>
   );
 };

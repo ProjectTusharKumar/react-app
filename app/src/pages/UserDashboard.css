@@ -1,218 +1,256 @@
-/* Dark dashboard style for user dashboard */
-.dashboard-root {
-  min-height: 100vh;
-  background: #18191a;
-  position: relative;
+:root {
+  --bg: #18191a;
+  --card: #23272f;
+  --text: #f1f1f1;
+  --accent: #64b5f6;
 }
-.dashboard-header {
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.dashboard-container {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 64px;
+}
+
+.dashboard-top {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge {
+  background: #333;
+  color: var(--accent);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+.dashboard-cards {
+  margin-top: 20px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  background: var(--card);
+  padding: 16px;
+  border-radius: 12px;
+}
+
+/* .card.full {
+  /* width: 100%; */
+/* } */ 
+
+.card-label {
+  font-size: 1.7rem;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+
+.card-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.reach-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-size: xx-large;
+}
+
+.reach-stats div {
+  text-align: center;
+}
+
+.chart-placeholder {
+  background: #1f1f1f;
+  height: 100px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 0.95rem;
+  margin-top: 10px;
+}
+
+.legend {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.hot { background: #E53935; }
+.dot.warm { background: #FBC02D; }
+.dot.cold { background: #039BE5; }
+
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--card);
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  border-top: 1px solid #2a2a2a;
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.dashboard-logo {
+  width: 120px;
+  height: auto;
+  cursor: pointer;
+  margin-left: 16px;
+}
+
+.dashboard-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 16px 8px 16px;
+  padding: 12px 16px;
   background: #23272f;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-  border-radius: 12px 12px 0 0;
+}
+
+.dashboard-menu-wrapper {
   position: relative;
-  overflow: visible;
-  z-index: 10;
+  overflow: visible !important;
 }
-.header-title {
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1px;
+
+.dashboard-menu-btn {
+  background: #333;
+  color: #fff;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.dashboard-menu-items {
+  position: absolute;
+  right: 0;
+  margin-top: 4px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+  z-index: 1000;
+}
+
+.dashboard-menu-items [data-headlessui-state~="active"] {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-menu-items button {
   color: #f1f1f1;
-}
-.menu-btn {
+  width: 100%;
+  padding: 10px 20px;
+  text-align: left;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
 }
-.dashboard-greet {
-  margin: 18px 0 10px 0;
-  text-align: center;
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #f1f1f1;
-}
-.dashboard-content {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 0 8px;
-}
-/* Dashboard tiles: 2 per row, custom order */
-.dashboard-tiles {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  justify-content: center;
-  /* border-radius: 10px; */
-  margin-top: 24px;
-}
-/* Dashboard tile container */
-.dashboard-tile {
-  min-width: 0;
-  max-width: 100vw;
-  min-height: 120px;
-  border-radius: 0;
-  box-shadow: 0 4px 18px 0 rgba(255,255,255,0.18);
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  padding: 18px 18px 14px 18px;
-  position: relative;
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background: #64b5f6;
+  color: white;
+  border: none;
+  border-radius: 50%;
   cursor: pointer;
-  transition: filter 0.2s, transform 0.2s, box-shadow 0.2s;
-  font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 1000;
 }
 
-.dashboard-tile:active, .dashboard-tile:focus, .dashboard-tile:hover {
-  filter: brightness(0.95) contrast(1.1);
-  transform: scale(1.03);
-  box-shadow: 0 8px 32px 0 rgba(255,255,255,0.28);
+.fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.3);
 }
-.dashboard-tile.total {
-  background: #FFD600;
-  color: #222;
+
+.pie-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
 }
-.dashboard-tile.hot {
-  background: #E53935;
-  color: #fff;
-}
-.dashboard-tile.cold {
-  background: #039BE5;
-  color: #fff;
-}
-.dashboard-tile.warm {
-  background: #FBC02D;
-  color: #222;
-}
-.dashboard-tile.conversion {
-  background: #FFA726;
-  color: #222;
-}
-.dashboard-tile.amount {
-  background: #4CAF50;
-  color: #fff;
-}
-/* Tile label (icon + text) - top left corner */
-.tile-label {
-  font-size: 0.9rem; /* Change text size as needed */
-  font-weight: 600;
-  margin-bottom: 8px;
-  letter-spacing: 0.5px;
-  width: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  text-align: left;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  z-index: 2;
-  gap: 0px !important;
-}
-/* Icon size for tile label - change font-size as needed */
-.tile-label .icon {
-  font-size: 20px !important; /* Change icon size here */
-  margin-right: 6px;
-}
-/* Counter value - perfectly centered in tile */
-.tile-value {
-  font-size: 6rem; /* Change counter size as needed */
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: 0;
+
+.pie-container svg {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+}
+
+.pie-center {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  text-align: center;
+  color: #f1f1f1;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-@media (max-width: 700px) {
-  .dashboard-content {
-    max-width: 98vw;
-    padding: 0 2px;
-  }
-  .dashboard-header {
-    padding: 12px 6px 6px 6px;
-  }
-  .dashboard-tiles {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  .dashboard-tile {
-    padding: 12px 8px 10px 8px;
-    min-width: 0;
-  }
-}
-@media (max-width: 400px) {
-  .dashboard-tiles {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-/* Fix dashboard menu overflow and FAB styling */
-.dashboard-menu {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  min-width: 160px;
-  z-index: 1000;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-  background: #1a1a1a;;
-  border-radius: 8px;
-  overflow: visible;
-  padding: 8px 0;
-  display: flex;
-  flex-direction: column;
-}
-.fab, .illusion-fab {
-  background: #fff;
-  color: #1976d2;
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 1001;
-  box-shadow: 0 8px 32px 0 rgba(25, 118, 210, 0.28), 0 0 0 8px rgba(25,118,210,0.08);
-  /* Remove margin-right if present */
-  /* margin-right: 0 !important; */
+.pie-total {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-.fab-icon-wrapper {
+.pie-percent {
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+.flex{
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+  justify-content: space-around;
 }
-.fab-icon-wrapper span {
-  font-size: 32px;
-  margin-right: 0 !important;
+
+.total {
+  font-size: 1.2rem;
+  color: #f1f1f1;
+  margin-bottom: 6px;
 }
-.fab:hover {
-  background: #f1f1f1 !important;
-}
-.illusion-fab {
-  box-shadow: 0 8px 32px 0 rgba(255,255,255,0.18), 0 0 0 8px rgba(25,118,210,0.08) !important;
-  transition: box-shadow 0.3s, transform 0.2s;
-  margin-right: 0 !important;
-}
-.illusion-fab:hover {
-  box-shadow: 0 16px 48px 0 rgba(255,255,255,0.28), 0 0 0 12px rgba(25,118,210,0.13) !important;
-  transform: scale(1.07);
-}
-.dashboard-tile .tile-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+#total-number {
+  font-size: 7rem;
+  font-weight: bold;
+  color: #f1f1f1;
+  text-align: center;
 }

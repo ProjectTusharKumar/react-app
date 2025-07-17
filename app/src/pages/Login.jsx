@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import './Login.css';
-import { login as loginApi } from '../api';
 import { toast } from 'react-toastify';
+import { login as loginApi } from '../api';
 import { useAuth } from '../api/AuthContext.jsx';
 import Input from '../components/Input';
+import './Login.css';
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -14,6 +13,7 @@ const Login = () => {
   const { login: setAuth } = useAuth();
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
+
   const handleSubmit = async e => {
     e.preventDefault();
     setLoading(true);
@@ -22,13 +22,7 @@ const Login = () => {
       const { token, empId, name, role } = res.data;
       setAuth({ token, role, name, employeeId: empId });
       toast.success(role === 'admin' ? 'You logged in as admin!' : 'Login successful!');
-      setTimeout(() => {
-        if (role === 'admin') {
-          navigate('/admin-dashboard', { replace: true });
-        } else {
-          navigate('/dashboard', { replace: true });
-        }
-      }, 100);
+      navigate(role === 'admin' ? '/admin-dashboard' : '/dashboard', { replace: true });
     } catch (err) {
       toast.error('Login failed!');
     } finally {
@@ -39,23 +33,44 @@ const Login = () => {
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 24 ,paddingTop: 20,marginTop: 20}}>
-          <img src="/Zeus_infinity_Ilogo.png" alt="ZI Affiliates Logo" style={{ height: 72, width: 72, objectFit: 'contain', marginBottom: 8 }} />
-          <h2 className="login-title">Login</h2>
+        <div className="login-header">
+          <img src="/Zeus_infinity_Ilogo.png" alt="Logo" className="login-logo" />
+          <h2 className="login-title">ZI AFFILIATES</h2>
         </div>
+
         <div className="login-row">
-          <span className="login-icon">📧</span>
           <label className="login-label" htmlFor="email">Email</label>
-          <Input type="email" name="email" value={form.email} onChange={handleChange} required className="login-input" />
+          <Input
+            type="text"
+            name="email"
+            id="email"
+            value={form.email}
+            onChange={handleChange}
+            className="login-input"
+            required
+          />
         </div>
+
         <div className="login-row">
-          <span className="login-icon">🔒</span>
           <label className="login-label" htmlFor="password">Password</label>
-          <Input type="password" name="password" value={form.password} onChange={handleChange} required className="login-input" />
+          <Input
+            type="password"
+            name="password"
+            id="password"
+            value={form.password}
+            onChange={handleChange}
+            className="login-input"
+            required
+          />
         </div>
-        <div className="login-actions">
-          <button type="submit" className="login-btn" disabled={loading}>{loading ? 'Logging in...' : 'Login'}</button>
-        </div>
+
+        <button type="submit" className="login-btn" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
+
+        {/* <div className="forgot-text">
+          <a href="/forgot-password">Forgot password?</a>
+        </div> */}
       </form>
     </div>
   );

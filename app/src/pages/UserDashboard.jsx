@@ -2,28 +2,58 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import Icon from '../components/Icon';
+import { Popover } from '@headlessui/react';
+import { PieChart } from 'react-minimal-pie-chart';
 import './UserDashboard.css';
+
+const ChartWithCenter = ({ hot, warm, cold }) => {
+  const total = hot + warm + cold || 1;
+  const data = [
+    { title: 'Hot', value: hot, color: '#E53935' },
+    { title: 'Warm', value: warm, color: '#FB8C00' },
+    { title: 'Cold', value: cold, color: '#039BE5' },
+  ];
+  const hotPct = ((hot / total) * 100).toFixed(0);
+  const warmPct = ((warm / total) * 100).toFixed(0);
+  const coldPct = ((cold / total) * 100).toFixed(0);
+
+  return (
+    <div className="pie-container">
+      <PieChart
+        data={data}
+        totalValue={total}
+        lineWidth={20}
+        paddingAngle={2}
+        radius={50}
+        rounded
+        label={() => null}
+        viewBoxSize={[100, 100]}
+      />
+      <div className="pie-center">
+        <div className="pie-total">{total}</div>
+        <div className="pie-percent">
+          <span style={{ color: '#E53935' }}>{hotPct}%</span> |
+          <span style={{ color: '#FB8C00' }}> {warmPct}%</span> |
+          <span style={{ color: '#039BE5' }}> {coldPct}%</span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Dashboard = () => {
   const [stats, setStats] = useState({ total: 0, hot: 0, cold: 0, warm: 0, conversion: 0, amount: 0 });
   const [loading, setLoading] = useState(true);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [tileLoading, setTileLoading] = useState(false);
-  const navigate = useNavigate();
   const name = localStorage.getItem('name');
   const token = localStorage.getItem('token');
-  const employeeId = localStorage.getItem('employeeId');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    async function fetchStats() {
-      setLoading(true);
+    const fetchStats = async () => {
       try {
         const res = await axios.get('https://zi-affiliates-backend.onrender.com/leads/dashboard', {
           headers: { Authorization: `Bearer ${token}` }
         });
-        console.log('Dashboard API response:', res);
-        console.log('Dashboard API response data:', res.data);
         setStats({
           total: res.data.totalLeads ?? 0,
           hot: res.data.hotCount ?? 0,
@@ -32,106 +62,82 @@ const Dashboard = () => {
           conversion: res.data.conversion ?? 0,
           amount: res.data.amount ?? 0,
         });
-      } catch (err) {
-        console.error('Dashboard API error:', err);
+      } catch {
         toast.error('Failed to fetch dashboard data');
       } finally {
         setLoading(false);
       }
-    }
+    };
     fetchStats();
   }, [token]);
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate('/login');
-  };
-
-  const handleProfile = () => {
-    setMenuOpen(false);
-    navigate('/profile');
-  };
-
-  const handleFAQ = () => {
-    setMenuOpen(false);
-    navigate('/faqs');
-  };
-
-  const handleLeads = () => {
-    setMenuOpen(false);
-    navigate('/leads');
-  };
-
-  const handleTileClick = (status) => {
-    setTileLoading(true);
-    setTimeout(() => {
-      if (status === 'Total') {
-        navigate('/leads', { state: { fromDashboard: true, api: 'employee' } });
-      } else if (['Hot', 'Cold', 'Warm'].includes(status)) {
-        navigate(`/leads?status=${status.toLowerCase()}`, { state: { fromDashboard: true, api: 'status' } });
-      }
-      setTileLoading(false);
-    }, 400); // short delay for loading effect
-  };
-
   return (
-    <div className="dashboard-root">
-      <header className="dashboard-header">
-          <img src="/Zeus_infinity_logo (1).png" alt="Zeus Infinity Affiliates Logo" style={{ height: 90, width: '37%', maxWidth: 420, objectFit: 'contain', background: 'transparent', display: 'block' }} />
-
-
-        <div className="header-right" style={{ position: 'relative', overflow: 'visible', zIndex: 10 }}>
-          <button className="menu-btn" onClick={() => setMenuOpen(v => !v)} title="Menu"><Icon name="☰" size={28} color="#ffffff" /></button>
-          {menuOpen && (
-            <div className="dashboard-menu" style={{ position: 'absolute', top: '100%', right: 0, minWidth: 160, zIndex: 1000, boxShadow: '0 4px 16px rgba(0,0,0,0.18)', background: '#23272f', borderRadius: 8, overflow: 'visible' }}>
-              <button className="dashboard-menu-item" onClick={handleProfile}><Icon name="👤" size={20} /> Profile</button>
-              <button className="dashboard-menu-item" onClick={handleFAQ}><Icon name="❓" size={20} /> FAQs</button>
-              <button className="dashboard-menu-item" onClick={handleLeads}><Icon name="📋" size={20} /> Leads</button>
-              <button className="dashboard-menu-item logout" onClick={handleLogout}><Icon name="🚪" size={20} /> Logout</button>
-            </div>
-          )}
-        </div>
+    <div className="dashboard-container">
+      <header className="dashboard-top">
+        <img
+          src="/Zeus_infinity_logo (1).png"
+          alt="Company Logo"
+          className="dashboard-logo"
+          onClick={() => navigate('/')}
+        />
+        <Popover className="dashboard-menu-wrapper">
+          <Popover.Button className="dashboard-menu-btn">☰</Popover.Button>
+          <Popover.Panel className="dashboard-menu-items">
+            <button onClick={() => navigate('/profile')}>Profile</button>
+            <button onClick={() => navigate('/settings')}>Settings</button>
+            <button onClick={() => navigate('/leads')}>Leads</button>
+            <button onClick={() => { localStorage.clear(); navigate('/login'); }}>Logout</button>
+          </Popover.Panel>
+        </Popover>
       </header>
-      <div className="dashboard-content">
-        <h2 className="dashboard-greet">HI! {name}</h2>
-        {tileLoading ? (
-          <div className="dashboard-loading">Loading leads...</div>
-        ) : loading ? (
-          <div className="dashboard-loading">Loading...</div>
-        ) : (
-          <div className="dashboard-tiles">
-            <div className="dashboard-tile total" onClick={() => handleTileClick('Total')} title="Show Total leads">
-              <div className="tile-label"><Icon name="📊" size={20} /> Total</div>
-              <div className="tile-value">{stats.total}</div>
-            </div>
-            <div className="dashboard-tile hot" onClick={() => handleTileClick('Hot')} title="Show Hot leads">
-              <div className="tile-label"><Icon name="🔥" size={20} /> Hot</div>
-              <div className="tile-value">{stats.hot}</div>
-            </div>
-            <div className="dashboard-tile cold" onClick={() => handleTileClick('Cold')} title="Show Cold leads">
-              <div className="tile-label"><Icon name="❄️" size={20} /> Cold</div>
-              <div className="tile-value">{stats.cold}</div>
-            </div>
-            <div className="dashboard-tile warm" onClick={() => handleTileClick('Warm')} title="Show Warm leads">
-              <div className="tile-label"><Icon name="🌤️" size={20} /> Warm</div>
-              <div className="tile-value">{stats.warm}</div>
-            </div>
-            <div className="dashboard-tile conversion">
-              <div className="tile-label"><Icon name="📈" size={20} /> Conversion</div>
-              <div className="tile-value">{stats.conversion}%</div>
-            </div>
-            <div className="dashboard-tile amount">
-              <div className="tile-label"><Icon name="💰" size={20} /> Amount</div>
-              <div className="tile-value">{stats.amount}</div>
-            </div>
+
+      <div className="dashboard-cards">
+        <div className="flex">
+          <div className="card">
+            <div className="total">Total Leads</div>
+            <div className="card-value" id='total-number'>{stats.total}</div>
           </div>
-        )}
+
+          <div className="card">
+            <ChartWithCenter hot={stats.hot} warm={stats.warm} cold={stats.cold} />
+          </div>
+        </div>
+        
+
+        <div className="card full">
+          {/* <div className="card-label">Total Reach</div> */}
+          <div className="reach-stats">
+            <div><span style={{ color: '#E53935' }}>Hot:</span><strong>{stats.hot}</strong></div>
+            <div><span style={{ color: '#FB8C00' }}>Warm:</span><strong>{stats.warm}</strong></div>
+            <div><span style={{ color: '#039BE5' }}>Cold:</span><strong>{stats.cold}</strong></div>
+          </div>
+        </div>
+
+        <div className="card">
+          <div className="card-label">Profit Earned</div>
+          <div className="card-value">{stats.amount}</div>
+        </div>
+
+        <div className="card full">
+          <div className="card-label">Monthly Reach</div>
+          <div className="chart-placeholder">📈 Chart Placeholder</div>
+          <div className="legend">
+            <span className="dot hot" /> Hot
+            <span className="dot warm" /> Warm
+            <span className="dot cold" /> Cold
+          </div>
+        </div>
+
+        <div className="card full">
+          <div className="card-label">Monthly Profit</div>
+          <div className="chart-placeholder">📊 Graph Placeholder</div>
+        </div>
       </div>
-      <button className="fab illusion-fab" onClick={() => navigate('/form')} title="New Lead">
-        <span className="fab-icon-wrapper">
-          <Icon name="+" size={32} />
-        </span>
+
+      <button className="fab" onClick={() => navigate('/form')} title="Add Lead">
+        +
       </button>
+
     </div>
   );
 };
