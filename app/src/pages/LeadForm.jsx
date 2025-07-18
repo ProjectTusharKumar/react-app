@@ -6,6 +6,8 @@ import { validateEmail, validatePhone } from '../utils/validation';
 import './LeadForm.css';
 import Input from '../components/Input';
 import { Range } from 'react-range';
+import { FaArrowLeft } from 'react-icons/fa';
+
 
 const LeadForm = () => {
   const [form, setForm] = useState({
@@ -60,10 +62,17 @@ const LeadForm = () => {
 
   return (
     <div className="leadform-container" style={{ scrollBehavior: 'smooth', justifyContent: 'center', alignItems: 'center' }}>
+      
       <form className="leadform-modern-form" onSubmit={handleSubmit} style={{ width: '100%', maxWidth: 420, margin: '0 auto', background: '#23272f', borderRadius: 18, boxShadow: '0 6px 32px rgba(25, 118, 210, 0.10), 0 1.5px 6px rgba(0,0,0,0.18)', padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', gap: '2rem', color: '#fff' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 24, marginTop: 10 }}>
           <img src="/Zeus_infinity_Ilogo.png" alt="ZI Affiliates Logo" style={{ height: 64, width: 64, objectFit: 'contain', marginBottom: 8 }} />
-          <h2 className="leadform-title" style={{ fontSize: '2rem', fontWeight: 700, color: '#fff', letterSpacing: 1, marginBottom: 0 }}>{'Lead Form'}</h2>
+          <div style={{ display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'space-between' }}>
+                    <button onClick={() => navigate('/dashboard')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0.5rem 0.7rem', borderRadius: '50%' }} title="Back">
+                      <FaArrowLeft size={22} color="#fff" />
+                    </button>
+                    <div className="leads-title" style={{ fontWeight: 700, fontSize: '1.6rem', color: '#fff', letterSpacing: 1, flex: 1, textAlign: 'center' }}>Leads Form</div>
+                    <div style={{ width: 36 }}></div>
+                  </div>
         </div>
           <div className="leadform-row">
             <label className="leadform-label" htmlFor="name">Full Name</label>
@@ -163,10 +172,9 @@ const LeadForm = () => {
               placeholder="Enter notes..."
             />
           </div>
-          <div className="leadform-actions" style={{ flexDirection: 'column', gap: 8 }}>
-            <button type="submit" className="leadform-btn" style={{ width: '100%', marginBottom: 8 }} disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
-            {/* <a href="#" style={{ color: '#64b5f6', textAlign: 'center', fontSize: 15, textDecoration: 'underline', marginBottom: 12, marginTop: -6 }}>Forgot something?</a> */}
-            <button type="button" className="leadform-btn leadform-back" style={{ width: '100%' }} onClick={() => navigate('/dashboard')}>Back</button>
+          <div className="leadform-actions" style={{ gap: 8 }}>
+            <button type="submit" className="leadform-btn"  disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
+            <button type="button" className="leadform-btn leadform-back"  onClick={() => navigate('/dashboard')}>Back</button>
           </div>
         </form>
     </div>

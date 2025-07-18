@@ -83,38 +83,30 @@ const Dashboard = () => {
         <Popover className="dashboard-menu-wrapper">
           <Popover.Button className="dashboard-menu-btn">☰</Popover.Button>
           <Popover.Panel className="dashboard-menu-items">
-            <button onClick={() => navigate('/profile')}>Profile</button>
-            <button onClick={() => navigate('/settings')}>Settings</button>
             <button onClick={() => navigate('/leads')}>Leads</button>
+            <button onClick={() => navigate('/leads')}>FAQ</button>
             <button onClick={() => { localStorage.clear(); navigate('/login'); }}>Logout</button>
           </Popover.Panel>
         </Popover>
       </header>
 
       <div className="dashboard-cards">
-        <div className="flex">
-          <div className="card">
-            <div className="total">Total Leads</div>
-            <div className="card-value" id='total-number'>{stats.total}</div>
-          </div>
-
           <div className="card">
             <ChartWithCenter hot={stats.hot} warm={stats.warm} cold={stats.cold} />
           </div>
-        </div>
         
 
         <div className="card full">
-          {/* <div className="card-label">Total Reach</div> */}
+          <div className="card-label">Total Leads : <strong>{stats.total}</strong></div>
           <div className="reach-stats">
-            <div><span style={{ color: '#E53935' }}>Hot:</span><strong>{stats.hot}</strong></div>
-            <div><span style={{ color: '#FB8C00' }}>Warm:</span><strong>{stats.warm}</strong></div>
-            <div><span style={{ color: '#039BE5' }}>Cold:</span><strong>{stats.cold}</strong></div>
+            <div><span>Hot:</span><strong>{stats.hot}</strong></div>
+            <div><span>Warm:</span><strong>{stats.warm}</strong></div>
+            <div><span>Cold:</span><strong>{stats.cold}</strong></div>
           </div>
         </div>
 
         <div className="card">
-          <div className="card-label">Profit Earned</div>
+          <div className="card-label">Commision</div>
           <div className="card-value">{stats.amount}</div>
         </div>
 

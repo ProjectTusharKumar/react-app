@@ -53,7 +53,7 @@
 .leadform-actions {
   display: flex;
   gap: 1rem;
-  justify-content: space-between;
+  justify-content: center;
 }
 .leadform-actions button {
   display: flex;
@@ -62,6 +62,7 @@
   background: linear-gradient(90deg, #1976d2 60%, #64b5f6 100%);
   color: #fff;
   border: none;
+  justify-content: center;
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
@@ -152,7 +153,7 @@
 .leadform-actions {
   display: flex;
   gap: 1rem;
-  justify-content: flex-end;
+  justify-content: center;
   margin-top: 1.5rem;
 }
 .leadform-btn {
@@ -203,7 +204,7 @@
 }
 @media (max-width: 600px) {
   .leadform-container {
-    padding-top:200px;
+    padding: 19rem 0 0 0;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
