@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:3000';
+const API_BASE = 'https://zi-affiliates-backend.onrender.com';
 
 const api = axios.create({
   baseURL: API_BASE,
