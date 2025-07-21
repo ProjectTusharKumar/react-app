@@ -4,6 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Popover } from '@headlessui/react';
 import { PieChart } from 'react-minimal-pie-chart';
+import DashboardPie from '../../components/Piechat'; // Import the pie chart component
 import './UserDashboard.css';
 
 const ChartWithCenter = ({ hot, warm, cold }) => {
@@ -91,8 +92,14 @@ const Dashboard = () => {
       </header>
 
       <div className="dashboard-cards">
+      <h2>Hi! {name}</h2>
           <div className="card">
-            <ChartWithCenter hot={stats.hot} warm={stats.warm} cold={stats.cold} />
+            {/* {/* <ChartWithCenter hot={stats.hot} warm={stats.warm} cold={stats.cold} /> */}
+            <DashboardPie
+               total={stats.total}
+               done={stats.hot}
+               todo={stats.warm}
+               pending={stats.cold}/>
           </div>
         
 
@@ -103,33 +110,67 @@ const Dashboard = () => {
             <div><span>Warm:</span><strong>{stats.warm}</strong></div>
             <div><span>Cold:</span><strong>{stats.cold}</strong></div>
           </div>
-        </div>
+        </div>        
 
+        <div className="card full">
+          <div className="card-label">Last 3-Monthly Reach</div>
+          <div className="chart-placeholder">📈 Chart Placeholder</div>
+          <div className="legend">
+            <span className="dot hot" /> Jan
+            <span className="dot warm" /> Feb
+            <span className="dot cold" /> Mar
+          </div>
+        </div>
         <div className="card">
-          <div className="card-label">Commision</div>
+          <div className="card-label">Avg Leads/Month</div>
           <div className="card-value">{stats.amount}</div>
         </div>
 
-        <div className="card full">
-          <div className="card-label">Monthly Reach</div>
-          <div className="chart-placeholder">📈 Chart Placeholder</div>
-          <div className="legend">
-            <span className="dot hot" /> Hot
-            <span className="dot warm" /> Warm
-            <span className="dot cold" /> Cold
-          </div>
+        <div className="flex">
+        <div className="card">
+          <div className="card-label">Total Conversion </div>
+          <div className="card-value">{stats.conversion}</div>
+        </div>
+        <div className="card">
+          <div className="card-label">Conversion</div>
+          <div className="card-value">{stats.amount}%</div>
+        </div>
+        </div>
+        <div className="card">
+          <div className="card-label" id="double-label">Total Commission Earned</div>
+          <div className="card-value">{stats.amount}</div>
         </div>
 
-        <div className="card full">
-          <div className="card-label">Monthly Profit</div>
-          <div className="chart-placeholder">📊 Graph Placeholder</div>
+        <div className="flex">
+        <div className="card">
+          <div className="card-label" id="double-lable">Commission Earned </div>
+          <div className="card-value">{stats.conversion}</div>
         </div>
-      </div>
+        <div className="card ">
+          <div className="card-label">Commission</div>
+          <div className="card-value">{stats.amount}%</div>
+        </div>
+        </div>
+
+        <div className="flex">
+        <div className="card">
+          <div className="card-label " id="double-lable">Commission Credited </div>
+          <div className="card-value">{stats.conversion}</div>
+        </div>
+        <div className="card">
+          <div className="card-label" id="double-lable">Commission Due</div>
+          <div className="card-value">{stats.amount}</div>
+        </div>
+        </div>
+        
+
+       
 
       <button className="fab" onClick={() => navigate('/form')} title="Add Lead">
         +
       </button>
 
+    </div>
     </div>
   );
 };

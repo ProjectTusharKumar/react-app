@@ -1,8 +1,3 @@
-/* =========================
-   Login Page CSS (Unique & Responsive)
-   ========================= */
-
-/* --- Variables for easy theming --- */
 :root {
   --color-bg: #18191a;
   --color-card: #23272f;
@@ -20,7 +15,7 @@
 }
 
 /* --- Container --- */
-.login-container {
+.signup-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,7 +24,7 @@
 }
 
 /* --- Card/Form --- */
-.login-form {
+.signup-form {
   background: var(--color-card);
   border-radius: 18px;
   box-shadow: 0 6px 32px rgba(25, 118, 210, 0.10), 0 1.5px 6px rgba(0,0,0,0.18);
@@ -43,12 +38,12 @@
   color: var(--color-text);
   transition: box-shadow var(--transition);
 }
-.login-form:hover {
-  box-shadow: 0 10px 40px rgba(25, 118, 210, 0.16), 0 2px 8px rgba(0,0,0,0.18);
+.signup-form:hover {
+  /* box-shadow: 0 10px 40px rgba(25, 118, 210, 0.16), 0 2px 8px rgba(0,0,0,0.18); */
 }
 
 /* --- Title --- */
-.login-title {
+.signup-title {
   text-align: center;
   font-size: 2rem;
   font-weight: 700;
@@ -61,7 +56,7 @@
 }
 
 /* --- Input Row --- */
-.login-row {
+.signup-row {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -70,7 +65,7 @@
 }
 
 /* --- Label --- */
-.login-label {
+.signup-label {
   color: var(--color-label);
   font-weight: 600;
   font-size: 1.1rem;
@@ -79,14 +74,14 @@
 }
 
 /* --- Icon --- */
-.login-icon {
+.signup-icon {
   font-size: 1.3rem;
   color: var(--color-primary-light);
   margin-bottom: 2px;
 }
 
 /* --- Input --- */
-.login-input {
+.signup-input {
   background: var(--color-bg);
   color: var(--color-text);
   border: 1.5px solid var(--color-border);
@@ -98,14 +93,14 @@
   box-sizing: border-box;
   margin-right: 10px;
 }
-.login-input:focus {
+.signup-input:focus {
   border: 1.5px solid var(--color-border-focus);
   outline: none;
   background: var(--color-card);
 }
 
 /* --- Button --- */
-.login-btn {
+.signup-btn {
   background: linear-gradient(90deg, var(--color-primary) 60%, var(--color-primary-light) 100%);
   color: #fff;
   border: none;
@@ -120,14 +115,14 @@
   align-items: center;
   gap: 0.5rem;
 }
-.login-btn:disabled {
+.signup-btn:disabled {
   background: #444;
   color: #888;
   cursor: not-allowed;
 }
 
 /* --- Actions --- */
-.login-actions {
+.signup-actions {
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
@@ -136,57 +131,66 @@
 
 /* --- Responsive --- */
 @media (max-width: 600px) {
-  .login-form {
+  .signup-form {
     padding: 1.2rem 0.5rem;
     max-width: 98vw;
     border-radius: var(--radius);
     box-sizing: border-box;
     padding-right: 30px;
     padding-left: 37px;
-    margin-left: 50px;
-    margin-right: 50px;
+    /* margin-left: 50px; */
+    /* margin-right: 50px; */
   }
-  .login-row {
+  .signup-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
-  .login-label {
-    margin-bottom: 2px;
+  .signup-label {
+    margin-bottom: 14px;
+    font-size: x-large;
   }
-  .login-input {
+  .signup-input {
     padding: 0.6rem 0.7rem;
     font-size: 0.98rem;
     border-radius: 6px;
     margin-right: 10px;
+    margin-bottom: 20px;
   }
-  .login-header {
+  .signup-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 1.5rem;
 }
-
-.login-logo {
+.signup-logo {
   width: 64px;              /* adjust as needed */
   height: 64px;
   object-fit: contain;
   margin-bottom: 0.8rem;
 }
-
-.login-title {
+.signup-title {
   font-size: 1.6rem;
   font-weight: 600;
   color: var(--color-text);
   margin: 0;
+  margin-bottom: 10px;
 }
-.login-btn{
+.signup-btn{
   width: 100%;
   padding: 0.8rem;
   font-size: 1rem;
   border-radius: 6px;
   box-shadow: none;
   justify-content: center;
+  margin-top: 1rem;
 }
-
+.signup-body{
+  /* width: 100%; */
+  padding: 1rem 1rem;
+}
+.signup-header {
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
 }

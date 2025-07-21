@@ -1,0 +1,65 @@
+.pie-wrapper {
+  display: flex;
+  /* flex-direction: column;//////////////////////// */
+  justify-content: space-around;
+  align-items: center;
+  /* background: #fff; */
+  border-radius: 18px;
+  padding: 1rem;
+  max-width: 260px;
+  margin: auto;
+  /* color: #333; */
+}
+
+.pie-chart-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.pie-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.pie-total {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.pie-subtitle {
+  font-size: 0.9rem;
+  /* color: #888; */
+}
+
+.pie-legend {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-left: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.legend-item .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legend-label {
+  font-weight: 700;
+}
+
+.legend-title {
+  /* color: #888; */
+}

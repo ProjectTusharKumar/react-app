@@ -35,6 +35,7 @@ body {
 }
 
 .dashboard-cards {
+
   margin-top: 20px;
   padding: 0 16px;
   display: flex;
@@ -46,11 +47,9 @@ body {
   background: var(--card);
   padding: 16px;
   border-radius: 12px;
+  box-shadow: 0 2px 8px rgb(255 255 255 / 24%);
 }
 
-/* .card.full {
-  /* width: 100%; */
-/* } */ 
 
 .card-label {
   font-size: 1.7rem;
@@ -240,8 +239,9 @@ body {
 }
 .flex{
   display: flex;
-  justify-content: space-around;
-}
+justify-content: space-between;
+    gap: 12px;
+  }
 
 .total {
   font-size: 1.2rem;
@@ -253,4 +253,7 @@ body {
   font-weight: bold;
   color: #f1f1f1;
   text-align: center;
+}
+#double-lable{
+  justify-content: center;
 }

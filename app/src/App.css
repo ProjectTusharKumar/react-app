@@ -160,9 +160,9 @@ body {
 
 ::-webkit-scrollbar {
   width: 8px;
-  background: #23272f;
+  /* background: #23272f; */
 }
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  /* background: #333; */
   border-radius: 8px;
 }
