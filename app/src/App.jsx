@@ -22,7 +22,7 @@ function AppRoutes() {
       <Route path="/signup"          element={isAuthenticated && role === 'admin' ? <Signup /> :         <Navigate to="/login" />} />
       <Route path="/lead-view"       element={isAuthenticated && role === 'admin' ? <LeadsView /> :      <Navigate to="/login" />} />
       <Route path="/dashboard"       element={isAuthenticated && role === 'user' ? <Dashboard /> :       <Navigate to="/login" />} />
-      <Route path="/form"            element={isAuthenticated && role === 'user' ? <LeadForm /> :        <Navigate to="/login" />} />
+      <Route path="/form"            element={isAuthenticated                    ? <LeadForm /> :        <Navigate to="/login" />} />
       <Route path="/leads"           element={isAuthenticated && role === 'user' ? <Leads /> :           <Navigate to="/login" />} />
       <Route path="*"                element={<Navigate to="/login" />} />
     </Routes>

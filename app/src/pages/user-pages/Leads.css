@@ -63,14 +63,17 @@
     font-size: xx-large;
     font-weight: 700;
   }
-  /* .services-list {
-  margin: 4px 0 8px 16px;
-  padding: 0;
-  list-style-type: disc;
-  color: #f1f1f1;
+  .lead-actions{
+display: flex;
+  justify-content: end;
+  margin-top: 1rem;
 }
+.edit-btn{
+   background-color: blue;
+    margin-right: 18px;
 
-.services-list li {
-  margin-bottom: 2px;
-} */
+}
+.delete-btn{
+background-color: red;
+}
 }

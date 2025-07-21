@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { getAllLeads, getAllLeadsByStatus } from '../../api';
+import { getAllLeads, getAllLeadsByStatus,deleteLead } from '../../api';
 import { toast } from 'react-toastify';
 import { FaArrowLeft } from 'react-icons/fa';
 import './LeadsView.css';
@@ -37,6 +37,23 @@ const LeadsView = () => {
     }
     fetchLeads();
   }, [filter, token]);
+
+  const handleDelete = async (leadId) => {
+      if (!window.confirm('Are you sure you want to delete this lead?')) return;
+      try {
+        await deleteLead(leadId, token);
+        setLeads((prev) => prev.filter((l) => l._id !== leadId));
+        toast.success('Lead deleted');
+      } catch (err) {
+        console.error('Delete API error:', err);
+        toast.error('Failed to delete lead');
+      }
+    };
+  
+    const handleEdit = (lead) => {
+      navigate('/form', { state: { lead } }); // or however you're passing edit data
+    };
+  
 
   return (
     <div className="leads-container">

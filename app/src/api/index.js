@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = 'https://organic-disco-4j67jpxpjj6jcqrq-3000.app.github.dev';
+const API_BASE = 'http://localhost:3000';
 
 const api = axios.create({
   baseURL: API_BASE,
@@ -49,7 +49,7 @@ export const deleteLead = (leadId, token, employeeId) =>
   });
 
 export const updateLead = (leadId, payload, token, employeeId) => {
-  return axios.post('/leads/update', payload, {
+  api.post('/leads/update', payload, {
     headers: {
       Authorization: `Bearer ${token}`,
       'lead-id': leadId,

@@ -1,0 +1,13 @@
+.lead-actions{
+display: flex;
+  justify-content: end;
+  margin-top: 1rem;
+}
+.edit-btn{
+   background-color: blue;
+    margin-right: 18px;
+
+}
+.delete-btn{
+background-color: red;
+}
